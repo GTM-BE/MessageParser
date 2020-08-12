@@ -1,20 +1,15 @@
 {
-  "name": "message-parser",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "author": "greyliances#0001",
+  "dependencies": {},
+  "description": "In-house Data Parsing Solution for User-Input",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.6.0",
     "eslint-config-google": "^0.14.0"
   },
   "keywords": [],
-  "author": "greyliances#0001",
   "license": "ISC",
-  "dependencies": {
-    "ansi-colors": "^4.1.1"
-  }
+  "main": "index.js",
+  "name": "message-parser",
+  "version": "1.0.0"
 }
