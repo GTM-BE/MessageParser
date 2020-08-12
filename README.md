@@ -96,7 +96,7 @@ const out = {
     'a',
     'text.',
     'This is a quote " in a String',
-    false
+    'false'
   ],
   flags: {}
 };
@@ -118,7 +118,7 @@ Strings, Code Blocks, Values and Booleans. Their position in the text doesn't ma
 Input
 
 ````
---!shortHand --a --b=text --c=```hey``` --d="false" --e=true
+--!shortHand --a --b=text --c=```hey``` --d="FALSE" --e=true
 ````
 
 Output
