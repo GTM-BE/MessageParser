@@ -12,6 +12,23 @@ the need for further code modifications.
 
 We also support escaping, so Users can still write Markers literally if they are escaped properly
 
+<br>
+<br>
+<br>
+
+# How to contribute
+
+The code isn't optimized at all. We are always open for contributions to make
+execution faster and memory consumption smaller.
+
+Found a complaint? Open an issue
+
+PRs are very welcome
+
+<br>
+<br>
+<br>
+
 # Parsing
 
 ---
@@ -89,7 +106,7 @@ const out = {
 
 #### Flags
 
-Flags are one of our most wanted and useful features.
+Flags are one of our most useful features.
 You can assign values to them directly, or use our shorthand syntax
 Assigning no value to a flag will assign **true** to it
 Using Negators like an exclamation mark in front of the flag name does the opposite.
@@ -121,6 +138,9 @@ const out = {
 ````
 
 # Errors
+
+The User will get a descriptive Error Message and the Position of the Problem.
+The wrong part will also be highlighted to find the errors easier
 
 - Flags that have a value assignment CAN'T make use of the shorthand syntax
 - Duplicate Flags aren't allowed
