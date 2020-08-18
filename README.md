@@ -79,8 +79,7 @@ const out = {
 #### Strings
 
 Strings will be parsed just how you'd expect it. Their surrounding quotes
-will not be part of the arguments. If your string is only **true** or **false** after trimming,
-they will be converted to Booleans.
+will not be part of the arguments.
 
 ```
 "Hello, this" is a text. "This is a quote \" in a String" "false    "
@@ -129,7 +128,7 @@ const out = {
   flags: {
     shortHand: false,
     a: true,
-    b: 'true',
+    b: 'text',
     c: '```hey```',
     d: false,
     e: true
