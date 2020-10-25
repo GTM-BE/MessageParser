@@ -222,7 +222,7 @@ module.exports.MessageParser = class MessageParser {
     }
 
     this.position.advanceIndex(
-      this.testAgainstCharacterSet('FlagAssignment').length.length
+      this.testAgainstCharacterSet('FlagAssignment').length
     );
 
     if (
