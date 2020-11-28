@@ -45,6 +45,33 @@ console.log(parser.out); // Get the parsed data
 <br>
 <br>
 
+# Adding or Modifying Markers
+
+Import: `npm i GTM-BE/MessageParser`
+
+```js
+const { MessageParser } = require('message-parser'); // Import Parser
+
+const parser = new MessageParser(`--a hello world --b=false  <= I am a custom String =>`, {
+  contentMarkers: [
+    { // Creates a new String Type
+      group: "String",
+      character: ["<=", "=>"]
+    },
+     { // Changes the parsing behavior for Code surrounded in triple backticks to that of Strings
+      group: "String",
+      character: "```"
+    }
+  ]
+}); // Provide Input
+
+console.log(parser.out); // Get the parsed data
+```
+
+<br>
+<br>
+<br>
+
 # Parsing
 
 ---
