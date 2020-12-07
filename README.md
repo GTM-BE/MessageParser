@@ -37,8 +37,9 @@ Import: `npm i GTM-BE/MessageParser`
 const { MessageParser } = require('message-parser'); // Import Parser
 
 const parser = new MessageParser(`--a hello world --b=false`); // Provide Input
+const output = parser.parse(); // Parse the input
 
-console.log(parser.out); // Get the parsed data
+console.log(output); // Get the parsed data
 ```
 
 <br>
@@ -52,20 +53,30 @@ Import: `npm i GTM-BE/MessageParser`
 ```js
 const { MessageParser } = require('message-parser'); // Import Parser
 
-const parser = new MessageParser(`--a hello world --b=false  <= I am a custom String =>`, {
-  contentMarkers: [
-    { // Creates a new String Type
-      group: "String",
-      character: ["<=", "=>"]
-    },
-     { // Changes the parsing behavior for Code surrounded in triple backticks to that of Strings
-      group: "String",
-      character: "```"
+const parser = new MessageParser(
+  `--a hello world --b.false  <= I am a custom String =>`,
+  {
+    markers: {
+      contentMarkers: [
+        {
+          group: 'String',
+          start: '<=',
+          end: '=>'
+        }
+      ],
+      segmentMarkers: [
+        {
+          group: 'FlagAssignment',
+          start: '.'
+        }
+      ]
     }
-  ]
-}); // Provide Input
+  }
+); // Provide Input
 
-console.log(parser.out); // Get the parsed data
+const output = parser.parse(); // Parse the input
+
+console.log(output); // Get the parsed data
 ```
 
 <br>
@@ -84,14 +95,14 @@ and don't start with any of the other content types
 Input
 
 ```
-Hello, this is a text
+Hello, \\ \\this is a text
 ```
 
 Output
 
 ```js
 const out = {
-  args: ['Hello,', 'this', 'is', 'a', 'text'],
+  args: ['Hello,', '\\', 'this', 'is', 'a', 'text'],
   flags: {}
 };
 ```
@@ -160,7 +171,7 @@ Strings, Code Blocks, Values and Booleans. Their position in the text doesn't ma
 Input
 
 ````
---!shortHand --a --b=text --c=```hey``` --d="FALSE" --e=true
+--!shortHand --a --b=text --c=```hey``` --d="FALSE" --e=true --f=TRUE
 ````
 
 Output
@@ -173,8 +184,9 @@ const out = {
     a: true,
     b: 'text',
     c: '```hey```',
-    d: false,
-    e: true
+    d: 'FALSE',
+    e: true,
+    f: true
   }
 };
 ````

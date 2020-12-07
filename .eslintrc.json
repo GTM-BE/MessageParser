@@ -6,7 +6,9 @@
   "extends": "google",
   "globals": {
     "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
+    "SharedArrayBuffer": "readonly",
+    "expect": "readonly",
+    "test": "readonly"
   },
   "parser": "babel-eslint",
   "parserOptions": {

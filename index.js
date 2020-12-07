@@ -1,2 +1,2 @@
-module.exports.MessageParser = require('./src/MessageParser').default;
-module.exports.Position = require('./src/Position').default;
+module.exports.MessageParser = require('./src/MessageParser').MessageParser;
+module.exports.TextPosition = require('./src/TextPosition').TextPosition;

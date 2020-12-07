@@ -4,12 +4,16 @@
   "description": "In-house Data Parsing Solution for User-Input",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.6.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint": "^7.15.0",
+    "eslint-config-google": "^0.14.0",
+    "jest": "^26.6.3"
   },
   "keywords": [],
   "license": "ISC",
   "main": "index.js",
   "name": "message-parser",
-  "version": "1.0.0"
+  "version": "2.0.0",
+  "scripts": {
+    "test": "jest"
+  }
 }
