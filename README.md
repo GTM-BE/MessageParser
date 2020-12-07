@@ -18,7 +18,7 @@ We also support escaping, so Users can still write Markers literally if they are
 
 # How to contribute
 
-The code isn't optimized at all. We are always open for contributions to make
+We are always open for contributions to make
 execution faster and memory consumption smaller.
 
 Found a complaint? Open an issue
