@@ -192,6 +192,8 @@ class MessageParser {
    */
   parse(content = '') {
     this.content = content;
+    this.args = [];
+    this.flags = {};
 
     /**
      * Shortcut to make sure that we don't waste time setting up the parsing.
