@@ -36,8 +36,8 @@ Import: `npm i GTM-BE/MessageParser`
 ```js
 const { MessageParser } = require('message-parser'); // Import Parser
 
-const parser = new MessageParser(`--a hello world --b=false`); // Provide Input
-const output = parser.parse(); // Parse the input
+const parser = new MessageParser(); // Provide Input
+const output = parser.parse(`--a hello world --b=false`); // Parse the input
 
 console.log(output); // Get the parsed data
 ```
@@ -53,30 +53,29 @@ Import: `npm i GTM-BE/MessageParser`
 ```js
 const { MessageParser } = require('message-parser'); // Import Parser
 
-const parser = new MessageParser(
-  `--a hello world --b.false  <= I am a custom String =>`,
-  {
-    markers: {
-      contentMarkers: [
-        {
-          group: 'String',
-          start: '<=',
-          end: '=>'
-        }
-      ],
-      segmentMarkers: [
-        {
-          group: 'FlagAssignment',
-          start: '.'
-        }
-      ]
-    }
+const parser = new MessageParser({
+  markers: {
+    contentMarkers: [
+      {
+        group: 'String',
+        start: '<=',
+        end: '=>'
+      }
+    ],
+    segmentMarkers: [
+      {
+        group: 'FlagAssignment',
+        start: '.'
+      }
+    ]
   }
-); // Provide Input
+}); // Provide Input
 
-const output = parser.parse(); // Parse the input
+const output = parser.parse(
+  `--a hello world --b.false  <= I am a custom String =>`
+); // Parse the input
 
-console.log(output); // Get the parsed data
+console.log(output); // Log the parsed data
 ```
 
 <br>
