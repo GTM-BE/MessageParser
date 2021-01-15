@@ -36,10 +36,10 @@ Import: `npm i GTM-BE/MessageParser`
 ```js
 const { MessageParser } = require('message-parser'); // Import Parser
 
-const parser = new MessageParser(); // Provide Input
+const parser = new MessageParser(); // Create Parser instance
 const output = parser.parse(`--a hello world --b=false`); // Parse the input
 
-console.log(output); // Get the parsed data
+console.log(output); // Log the parsed data
 ```
 
 <br>
@@ -69,7 +69,7 @@ const parser = new MessageParser({
       }
     ]
   }
-}); // Provide Input
+}); // Create Parser Instance
 
 const output = parser.parse(
   `--a hello world --b.false  <= I am a custom String =>`
