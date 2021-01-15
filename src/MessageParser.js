@@ -121,24 +121,12 @@ const segmentMarkers = [
  */
 class MessageParser {
   /**
-   *
-   * @param {String} content The content to parse
+   * Constructor for the MessageParser class
    * @param {ParserOptions} options Options for the parser.
    */
-  constructor(content = '', options = {}) {
-    this.textPosition = new TextPosition();
-    this.content = content ?? '';
+  constructor(options = {}) {
     this.contentMarkers = contentMarkers;
     this.segmentMarkers = segmentMarkers;
-    /**
-     * @type Arguments
-     */
-    this.args = [];
-
-    /**
-     * @type Flags
-     */
-    this.flags = {};
 
     if (options) {
       if (options.markers && options.markers.contentMarkers) {
@@ -189,19 +177,34 @@ class MessageParser {
 
   /**
    * Parses the given data.
+   * @param {string} content The data to parse
    * @return {ParserResult} The parsed data.
    */
-  parse() {
+  parse(content = '') {
+    this.content = content;
+
+    /**
+     * @type Arguments
+     */
+    this.args = [];
+
+    /**
+     * @type Flags
+     */
+    this.flags = {};
+
     /**
      * Shortcut to make sure that we don't waste time setting up the parsing.
      * Instead we just return an empty ParserResult
      */
     if (!this.content || !this.content.trim()) {
       return {
-        args: [],
-        flags: {}
+        args: this.args,
+        flags: this.flags
       };
     }
+
+    this.textPosition = new TextPosition();
 
     while (this.hasNext() && this.getCurrentCharacter()) {
       /**
