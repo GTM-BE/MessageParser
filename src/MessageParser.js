@@ -340,7 +340,7 @@ class MessageParser {
     while (this.hasNext()) {
       if (!this.getCurrentCharacter()) {
         throw new UnclosedStringError(
-          `**Unclosed String found__**\n\n${
+          `**__Unclosed String found__**\n\n${
             this.textPosition
           }: ${this.content.slice(0, start)}**${this.content.slice(start)}**`
         );
