@@ -4,7 +4,7 @@
   "description": "In-house Data Parsing Solution for User-Input",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.27.0",
+    "eslint": "^7.28.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^27.0.4",
     "node-notifier": ">=10.0.0"
