@@ -10,7 +10,7 @@ const {
 } = require('./ParserErrors');
 
 /**
- * @typedef {("Code"|"String"|"Whitespace"|"Newline"|"FlagStart"|"FlagNegator"|"FlagAssignment")} MarkerGroup
+ * @typedef {("Code"|"String"|"Whitespace"|"Newline"|"FlagStart"|"BoolFlag"|"FlagNegator"|"FlagAssignment")} MarkerGroup
  */
 
 /**
@@ -98,6 +98,10 @@ const contentMarkers = [
   {
     start: '—',
     group: 'FlagStart'
+  },
+  {
+    start: '-',
+    group: 'BoolFlag'
   }
 ];
 
@@ -240,7 +244,8 @@ class MessageParser {
             this.args.push(this.handleCode(matchedContentMarker));
             break;
           }
-          case 'FlagStart': {
+          case 'FlagStart':
+          case 'BoolFlag': {
             this.handleFlag(matchedContentMarker);
             break;
           }
@@ -522,6 +527,19 @@ class MessageParser {
           )}`
         );
       }
+    }
+
+    if (marker.group === 'BoolFlag') {
+      throw new FlagAssignmentError(
+        `**__Illegal Assignment. This Type of Flag can't have assignments __**\n\n${
+          this.textPosition
+        }: ${this.content.slice(0, flagStartPos)}**${this.content.slice(
+          flagStartPos,
+          this.textPosition.cursor + assignmentMarker.start.length
+        )}**${this.content.slice(
+          this.textPosition.cursor + assignmentMarker.start.length
+        )}`
+      );
     }
 
     if (isShortHandFlag) {

@@ -167,10 +167,13 @@ You can assign **true** or **false** directly as well.
 Any of the previous content types can also be used as value to them.
 Strings, Code Blocks, Values and Booleans. Their position in the text doesn't matter
 
+An Exception are the so-called BoolFlags. They can't have any value assignment except for
+the shorthand negate syntax but are shorter than normal flags
+
 Input
 
 ````
---!shortHand --a --b=text --c=```hey``` --d="FALSE" --e=true --f=TRUE
+--!shortHand --a --b=text --c=```hey``` --d="FALSE" --e=true --f=TRUE -boolFlag -!bool
 ````
 
 Output
@@ -185,7 +188,9 @@ const out = {
     c: '```hey```',
     d: 'FALSE',
     e: true,
-    f: true
+    f: true,
+    boolFlag: true,
+    bool: false
   }
 };
 ````

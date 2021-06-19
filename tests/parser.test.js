@@ -440,3 +440,77 @@ test('Empty / Nullish Parser call', () => {
     flags: {}
   });
 });
+
+test('BoolFlags', () => {
+  const parser = new MessageParser();
+
+  expect(parser.parse(`test \\test and -code welt -ye`)).toStrictEqual({
+    args: ['test', 'test', 'and', 'welt'],
+    flags: {
+      code: true,
+      ye: true
+    }
+  });
+});
+
+test('BoolFlags with illegal Assignment', () => {
+  expect(
+    (() => {
+      try {
+        const parser = new MessageParser();
+        return parser.parse(`test \\test and test -a=b`);
+      } catch (error) {
+        return error;
+      }
+    })()
+  ).toBeInstanceOf(FlagAssignmentError);
+});
+
+test('BoolFlags with Shorthand Negate', () => {
+  const parser = new MessageParser();
+
+  expect(parser.parse(`test \\test and -code welt -!ye`)).toStrictEqual({
+    args: ['test', 'test', 'and', 'welt'],
+    flags: {
+      code: true,
+      ye: false
+    }
+  });
+});
+
+test('Escaped BoolFlags', () => {
+  const parser = new MessageParser();
+
+  expect(parser.parse(`test \\test and \\-code welt -ye`)).toStrictEqual({
+    args: ['test', 'test', 'and', '-code', 'welt'],
+    flags: {
+      ye: true
+    }
+  });
+});
+
+test('Dashes in Text', () => {
+  const parser = new MessageParser();
+
+  expect(parser.parse(`test - \\test and \\-code welt -ye`)).toStrictEqual({
+    args: ['test', '-', 'test', 'and', '-code', 'welt'],
+    flags: {
+      ye: true
+    }
+  });
+});
+
+test('Dashes at the End', () => {
+  const parser = new MessageParser();
+
+  expect(
+    parser.parse(`test - \\test and \\-code welt -ye -!- --`)
+  ).toStrictEqual({
+    args: ['test', '-', 'test', 'and', '-code', 'welt', '--'],
+    flags: {
+      // eslint-disable-next-line quote-props
+      ye: true,
+      '-': false
+    }
+  });
+});
