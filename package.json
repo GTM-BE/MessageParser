@@ -6,7 +6,7 @@
   "description": "This MessageParser is designed to take care of user input and to transform it into\r useful and useable data for our Discord Bots.",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^8.31.0",
+    "eslint": "^8.36.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^29.3.1"
   },
